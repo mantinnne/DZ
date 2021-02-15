@@ -40,19 +40,16 @@ public class StartTest extends Base {
 
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(userEmail);
-        $x("//*[@id='subjectsContainer']/descendant::input").setValue(subjectTwo).pressEnter();
+        $("#subjectsInput").setValue(subjectTwo).pressEnter();
 
 
         $(byText(gender)).click();
         $("#userNumber").setValue(userNumber);
 
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__year-select").click();
-        $x("//option[contains(text(),'" + yearOfBirth + "')]").scrollTo().click();
-        $(".react-datepicker__month-select").click();
-        $x("//option[contains(text(),'" + monthOfBirth + "')]").click();
-        $x("//*[@class='react-datepicker__month']/descendant::" + "div[text()='" + dayOfBirth + "' and not(contains(@class,'react-datepicker__day--outside-month'))]").click();
-
+        $(".react-datepicker__year-select").selectOption(yearOfBirth);
+        $(".react-datepicker__month-select").selectOption(monthOfBirth);
+        $$(".react-datepicker__day").find(exactText(dayOfBirth)).click();
 
         ElementsCollection elementsHobs = $$(".custom-checkbox");
         for (SelenideElement element : elementsHobs) {
