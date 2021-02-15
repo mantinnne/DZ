@@ -18,8 +18,12 @@ public class workTogether extends Base {
         $$(".LC20lb").shouldHaveSize(7).first().click();
         switchTo().window(1);
         $(byText("Что такое Selenide?")).shouldBe(visible);
-
-
-
+    }
+    
+    @Test
+    void searchSelenideWithYandex() {
+        open("https://yandex.ru/");
+        $x("//input[@id='text']").setValue("Selenide").pressEnter();
+        $("div #search-result").shouldHave(text("Selenide: лаконичные и стабильные UI тесты на Java"));
     }
 }
